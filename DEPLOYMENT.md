@@ -170,6 +170,31 @@ Vault name change: takes effect on next deploy. Any existing redirect URLs alrea
 
 ---
 
+## Branching and release workflow
+
+- `main` — deployable, tagged versions only. No direct in-progress commits.
+- `dev` — integration branch. Routine changes commit straight to `dev`; larger or risky work goes through a `feat/<short-name>` branch with a PR back into `dev`.
+- When `dev` is stable and you want to ship:
+  1. Move every entry under `## [Unreleased]` in `CHANGELOG.md` into a new `## [X.Y.Z] - YYYY-MM-DD` section (today's date). Add a compare-URL entry at the bottom and update `[Unreleased]` to compare against the new tag.
+  2. Bump `package.json` `version`.
+  3. Commit on `dev` (`Release vX.Y.Z`).
+  4. Open a PR `dev` → `main`, fast-forward merge.
+  5. Tag from `main`:
+     ```bash
+     git checkout main && git pull
+     git tag -a vX.Y.Z -m "Release vX.Y.Z"
+     git push origin vX.Y.Z
+     ```
+  6. Deploy: `npx wrangler whoami && npx wrangler deploy`. Record the Version ID.
+  7. Publish a GitHub release for the tag (CHANGELOG section as body):
+     ```bash
+     gh release create vX.Y.Z --title "vX.Y.Z" --notes-file <(sed -n "/## \[X.Y.Z\]/,/## \[/p" CHANGELOG.md | sed '$d')
+     ```
+
+SemVer applies: patch for bug fixes that don't change behavior, minor for additive route changes or new env vars, major for removed or breaking route changes.
+
+---
+
 ## Troubleshooting
 
 ### `Hostname '<host>' already has externally managed DNS records`
