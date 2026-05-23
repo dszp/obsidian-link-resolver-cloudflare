@@ -1,0 +1,27 @@
+{
+  "name": "obsidian-link-resolver-cloudflare",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "author": "David Szpunar (https://david.szpunar.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dszp/obsidian-link-resolver-cloudflare.git"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:fresh": "npm run setup && npx wrangler deploy",
+    "types": "wrangler types",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.16.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6",
+    "wrangler": "^4.92.0"
+  }
+}

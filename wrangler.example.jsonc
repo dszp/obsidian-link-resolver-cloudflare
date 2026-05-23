@@ -1,0 +1,16 @@
+// Template — copy to wrangler.jsonc via `npm run setup` after editing .env.
+// Do NOT commit wrangler.jsonc; it contains your account id and vault name.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "obsidian-link-resolver",
+  "account_id": "${CLOUDFLARE_ACCOUNT_ID}",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-05-01",
+  "routes": [
+    { "pattern": "${RESOLVER_HOSTNAME}", "custom_domain": true }
+  ],
+  "vars": {
+    "VAULT_NAME": "${VAULT_NAME}"
+  },
+  "observability": { "enabled": true }
+}
