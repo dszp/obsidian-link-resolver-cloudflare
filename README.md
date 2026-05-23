@@ -4,6 +4,8 @@ A tiny Cloudflare Worker that 302-redirects short HTTP URLs to `obsidian://` dee
 
 The resolver is **content-free by design**: no R2 bucket, no KV namespace, no Durable Object, no datastore of any kind. It reads no vault state. It only knows your vault name (one wrangler var) and three URL shapes.
 
+> Background: [Two Workers for Obsidian and Claude.ai](https://dszp.dev/2026/05/23/two-workers-for-obsidian-and-claude-ai/) — announcement post covering the motivation and design of this resolver and the companion MCP Worker.
+
 ## Routes
 
 | Route | Redirects to | Survives rename? |

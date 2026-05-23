@@ -4,6 +4,11 @@ All notable changes to this project will be documented here. Format follows [Kee
 
 ## [Unreleased]
 
+### Documentation
+
+- README now links to the [announcement blog post](https://dszp.dev/2026/05/23/two-workers-for-obsidian-and-claude-ai/) covering the motivation and design of both Workers.
+- DEPLOYMENT.md gained a "Branching and release workflow" section documenting dev-branch discipline and the release-cut runbook.
+
 ## [0.2.0]
 
 ### Added
